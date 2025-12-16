@@ -1,0 +1,20 @@
+! Title: Zen - Ads
+! Expires: 12 hours
+
+! Disable rules from AdGuard's Base filter, which trigger YT's anti-adblock
+youtube.com#@%#//scriptlet('set-constant', 'ytInitialPlayerResponse.adPlacements', 'undefined')
+youtube.com#@%#//scriptlet('set-constant', 'ytInitialPlayerResponse.adSlots', 'undefined')
+youtube.com#@%#//scriptlet('set-constant', 'ytInitialPlayerResponse.playerAds', 'undefined')
+youtube.com#@%#//scriptlet('set-constant', 'playerResponse.adPlacements', 'undefined')
+||youtube.com/watch?$remove-js-constant=ytInitialPlayerResponse.playerConfig.ssapConfig|ytInitialPlayerResponse.adPlacements|ytInitialPlayerResponse.adSlots|ytInitialPlayerResponse.playerAds
+youtube.com#@%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.adSlots', 'playerResponse.streamingData.serverAbrStreamingUrl')
+youtube.com#@%#//scriptlet('json-prune-xhr-response', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/playlist\?list=|\/player(?!.*(get_drm_license))|watch\?[tv]=|get_watch\?/')
+youtube.com#@%#//scriptlet('json-prune-fetch-response', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/playlist\?list=|player\?|watch\?[tv]=|get_watch\?/')
+||youtube.com/youtubei/v1/player$jsonprune=$['adPlacements'\, 'adSlots'\, 'playerAds']
+
+! Fixes infinite loading on YouTube; exception for a rule from AdGuard Base filter
+@@||googlevideo.com/videoplayback*ctier=L&*%2Cxpc%2Cctier%2C
+
+||wowumounsou.com^$document
+||whauwhoatchee.com^
+embednow.top##div[style*="z-index: 2147483647"]:last-of-type
